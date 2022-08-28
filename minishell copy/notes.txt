@@ -1,0 +1,11 @@
+mercredi 17 aout 2022
+
+aujourdhui j'attaque minishell deter. But du jour : faire fonctionner la fonction export. LIGHTWEIGHT !
+Il est 14h30. Seance jambes a 17h30. J'ai trois heures devant moi. Fais en sorte que celles ci comptent.
+-> Pas de reseaux sociaux, pas de discussions avec les potes. Juste de la musique et du code. GL HF t'es pas une pute tu peux le faire.
+
+export a l'air ok.
+
+Il faut a present gerer les double quotes ainsi que les variables. Ca va se faire sans doutes dans le parsing.
+ex: echo $VAR
+je noterai des cas particuliers a gerer ici probablement.
