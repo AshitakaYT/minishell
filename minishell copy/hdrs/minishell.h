@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:37:47 by aucousin          #+#    #+#             */
-/*   Updated: 2022/08/25 16:53:07 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/04 15:52:35 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,8 +115,8 @@ int			open_process_files(t_process *pipex);
 void		exit_perror(char *error, int code);
 int			close_files(t_process *pipex);
 
-char		*ft_parsecmd(t_token *lst);
-char		**msh_create_cmd(t_token *lst);
+char		*ft_parsecmd(t_token *lst, t_minishell *msh);
+char		**msh_create_cmd(t_token *lst, t_minishell *msh);
 int			msh_count_cmd(t_token *lst);
 
 // builtins
@@ -142,6 +142,7 @@ char		*ft_strdupexport(char *src);
 void		msh_printfexport(char **tab);
 void		msh_export_noargs(t_minishell *msh);
 char		**msh_realloc_env(t_minishell *msh, char *str);
+int			msh_isintab(char **tab, char *str);
 
 // list utils
 
