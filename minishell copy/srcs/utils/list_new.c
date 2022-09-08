@@ -6,13 +6,13 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 06:55:47 by aucousin          #+#    #+#             */
-/*   Updated: 2022/07/22 18:12:49 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/07 16:01:10 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../hdrs/minishell.h"
 
-t_token	*ft_tokennew(char *str, int type, int index)
+t_token	*ft_tokennew(char *str, int type, int linked)
 {
 	t_token	*list;
 
@@ -22,7 +22,7 @@ t_token	*ft_tokennew(char *str, int type, int index)
 	list->next = NULL;
 	list->str = str;
 	list->type = type;
-	list->index = index;
+	list->islinked = linked;
 	return (list);
 }
 

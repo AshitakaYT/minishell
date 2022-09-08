@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/07 21:37:15 by aucousin          #+#    #+#             */
-/*   Updated: 2022/08/17 15:52:13 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/07 16:16:39 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	ft_printtoken(t_token *list)
 		printf("| i = %d                            \n", i);
 		printf("| list->str : %s            \n", list->str);
 		printf("| list->type : %d            \n", list->type);
+		printf("| list->islinked : %d            \n", list->islinked);
 		printf("-----------------------------------\n");
 		list = list->next;
 		i++;

@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:37:47 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/04 15:52:35 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/07 17:53:32 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@
 
 typedef struct s_token
 {
-	int				index;
 	char			*str;
 	int				type;
+	int				islinked;
 	struct s_token	*next;
 }					t_token;
 
@@ -98,6 +98,17 @@ typedef struct s_minishell
 	int				status;
 }		t_minishell;
 
+typedef struct s_var
+{
+	t_process		*process;
+	t_minishell		*msh;
+	char			*cmd;
+	char			*var;
+	char			*tmp;
+	int				i;
+	int				j;
+}		t_var;
+
 // MANDATORY FCTS
 
 char		*ft_read_line(int buff_size, int pos, int c);
@@ -111,6 +122,15 @@ int			msh_parse_redir(t_minishell *msh);
 void		ft_heredocs(t_process *process);
 void		ft_heredoc(t_redir *heredoc);
 
+void		msh_get_tokens(t_minishell *msh, char *line);
+int			msh_count_cmd(t_token *lst);
+void		msh_create_process(t_minishell *msh, t_token *lst);
+int			msh_parse_redir(t_minishell *msh);
+
+t_token		*msh_parse_txt(char *line, int *linked, int *i);
+t_token		*msh_parse_sq(char *line, int *linked, int *i);
+t_token		*msh_parse_dbq(char *line, int *linked, int *i);
+t_token		*msh_parse_red(char *line, int *linked, int *i);
 int			open_process_files(t_process *pipex);
 void		exit_perror(char *error, int code);
 int			close_files(t_process *pipex);
@@ -118,6 +138,12 @@ int			close_files(t_process *pipex);
 char		*ft_parsecmd(t_token *lst, t_minishell *msh);
 char		**msh_create_cmd(t_token *lst, t_minishell *msh);
 int			msh_count_cmd(t_token *lst);
+
+char		*msh_getvar(int index, t_minishell *msh);
+void		ft_init_var(t_var *var, int x);
+void		ft_handlevar(t_token *lst, t_minishell *msh, t_var *var);
+char		*ft_handletxt(t_token *lst, t_minishell *msh);
+char		*ft_handlesq(t_token *lst);
 
 // builtins
 
@@ -146,7 +172,7 @@ int			msh_isintab(char **tab, char *str);
 
 // list utils
 
-t_token		*ft_tokennew(char *str, int type, int index);
+t_token		*ft_tokennew(char *str, int type, int linked);
 t_process	*ft_processnew(char **cmd, int piped, t_process *prev);
 t_redir		*ft_redirnew(char *heredoc, int type, char *file);
 
@@ -188,6 +214,6 @@ void		msh_init(t_minishell *msh, char **envp);
 
 // exec
 
-int		msh_execute(t_minishell *msh);
+int			msh_execute(t_minishell *msh);
 
 #endif

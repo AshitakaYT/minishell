@@ -4,9 +4,9 @@ READLINE_LIB_DIR_FLAG := -L$(shell brew --prefix readline)/lib
 READLINE_INC_DIR_FLAG := -I$(shell brew --prefix readline)/include
 
 SRC =	main.c 					\
-		srcs/parsing/parsing.c	srcs/parsing/read_line.c		srcs/parsing/open_close.c	srcs/parsing/heredocs.c	srcs/parsing/variables.c		\
+		srcs/parsing/parsing.c	srcs/parsing/read_line.c		srcs/parsing/open_close.c	srcs/parsing/heredocs.c	srcs/parsing/variables.c	srcs/parsing/variables2.c	srcs/parsing/parsing2.c\
 		srcs/utils/utils.c		srcs/utils/list_addback.c		srcs/utils/list_clear.c		srcs/utils/list_new.c	srcs/utils/list_print.c		srcs/utils/utils2.c			\
-		srcs/builtins/msh_env.c	srcs/builtins/msh_isbuiltin.c	srcs/builtins/msh_echo.c	srcs/builtins/msh_pwd.c	srcs/builtins/msh_export.c	srcs/builtins/msh_unset.c	srcs/builtins/msh_cd.c	srcs/builtins/msh_exit.c\
+		srcs/builtins/msh_env.c	srcs/builtins/msh_isbuiltin.c	srcs/builtins/msh_echo.c	srcs/builtins/msh_pwd.c	srcs/builtins/msh_export.c	srcs/builtins/msh_export2.c	srcs/builtins/msh_export3.c	srcs/builtins/msh_unset.c	srcs/builtins/msh_cd.c	srcs/builtins/msh_exit.c\
 		srcs/init.c				\
 		srcs/exec/exec.c		\
 		
