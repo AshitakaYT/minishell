@@ -1,0 +1,15 @@
+Go outfile mon clasheuuuur
+total 88
+drwxr-xr-x  13 aucousin  4221    442 Jun 11 13:50 .
+drwxr-xr-x   7 aucousin  4221    238 Jun  3 12:29 ..
+-rw-r--r--@  1 aucousin  4221   6148 Jun  1 08:15 .DS_Store
+-rw-r--r--   1 aucousin  4221   1754 Jun  9 10:31 Makefile
+drwxr-xr-x   3 aucousin  4221    102 May 30 10:37 hdrs
+drwxr-xr-x  88 aucousin  4221   2992 Jun  9 10:27 libft
+-rw-r--r--   1 aucousin  4221   1887 Jun  9 10:34 main.c
+-rwxr-xr-x   1 aucousin  4221  24088 Jun 11 13:49 minishell
+drwxr-xr-x   4 aucousin  4221    136 Jun  9 11:14 objs
+-rwxr-xr-x   1 aucousin  4221     27 Jun 11 13:50 outfile
+drwxr-xr-x  11 aucousin  4221    374 Jun  7 16:16 pipex
+drwxr-xr-x   8 aucousin  4221    272 Jun  9 08:04 srcs
+drwxr-xr-x   7 aucousin  4221    238 Jun  7 23:17 tests

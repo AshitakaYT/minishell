@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:04:59 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/07 17:07:34 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/09 07:53:22 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	msh_count_cmd(t_token *lst)
 		{
 			lst = lst->next;
 		}
-		else
+		else if (lst->islinked == 0)
 			i++;
 		lst = lst->next;
 	}

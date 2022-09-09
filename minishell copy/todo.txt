@@ -1,12 +1,16 @@
-TO DO :
-1 - Builtins : unset -> Augustin Deadline : fini le 9 soir
+DONE :
+1.1 - Builtins : unset -> Augustin Deadline : fini le 9 soir Done.
+3 - Finir le parsing -> Augustin fini le 13 soir Done.
 
-2 - Signaux  : unset -> Cyrille Deadline : fini le 13 soir
+TO DO :
+
+1.2 - Builtins : exit -> Augustin Deadline : fini le 9 soir
+
+2 - Signaux -> Cyrille Deadline : fini le 13 soir
 	2.1 : ctrl-C
 	2.2 : ctrl-V
 	2.3 : ctrl-\
-
-3 - Finir le parsing -> Augustin fini le 13 soir
+	2.4 gerer les signaux dans les heredocs egalement ?
 
 4 - $? : variable globale -> To be determined fini le 16 soir
 5 - Zero leaks -> To be determined fini le 16 soir

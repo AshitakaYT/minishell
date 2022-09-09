@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:20:25 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/07 17:57:00 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/09 08:06:28 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ t_token	*msh_parse_txt(char *line, int *linked, int *i)
 	(*i) += ft_len_alnum(&line[(*i)]);
 	if (line[(*i)] && (line[(*i)] == '"'
 			|| line[(*i)] == 39 || ft_isalnum(line[(*i)])))
-		(*linked) = 1;
+	{
+		token->islinked = 1;
+	}
 	else
 		(*linked) = 0;
 	return (token);
@@ -61,7 +63,7 @@ t_token	*msh_parse_sq(char *line, int *linked, int *i)
 	(*i) += ft_lenquote(&line[(*i)]);
 	if (line[(*i)] && (line[(*i)] == '"'
 			|| line[(*i)] == 39 || ft_isalnum(line[(*i)])))
-		(*linked) = 1;
+		token->islinked = 1;
 	else
 		(*linked) = 0;
 	return (token);
@@ -76,7 +78,9 @@ t_token	*msh_parse_dbq(char *line, int *linked, int *i)
 	(*i) += ft_lendbquote(&line[(*i)]);
 	if (line[(*i)] && (line[(*i)] == '"'
 			|| line[(*i)] == 39 || ft_isalnum(line[(*i)])))
-		(*linked) = 1;
+	{
+		token->islinked = 1;
+	}
 	else
 		(*linked) = 0;
 	return (token);

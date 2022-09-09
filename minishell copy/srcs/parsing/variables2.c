@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:48:20 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/04 19:16:49 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/09 08:13:03 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,11 @@ char	*ft_parsecmd(t_token *lst, t_minishell *msh)
 		cmd = ft_handlesq(lst);
 	else
 		cmd = ft_handledq(lst, msh);
+	if (lst->islinked == 1)
+	{
+		cmd = ft_strjoin(cmd, ft_parsecmd(lst->next, msh));
+		lst = lst->next;
+	}
 	return (cmd);
 }
 
@@ -89,6 +94,8 @@ char	**msh_create_cmd(t_token *lst, t_minishell *msh)
 			cmds[i] = ft_parsecmd(lst, msh);
 			printf("CMD[i] ====== %s\n", cmds[i]);
 			i++;
+			while (lst && lst->islinked)
+				lst = lst->next;
 		}
 		lst = lst->next;
 	}
