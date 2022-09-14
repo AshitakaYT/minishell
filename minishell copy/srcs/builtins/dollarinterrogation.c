@@ -1,42 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   dollarinterrogation.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/11 09:16:59 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/14 19:03:48 by aucousin         ###   ########lyon.fr   */
+/*   Created: 2022/09/12 15:59:54 by aucousin          #+#    #+#             */
+/*   Updated: 2022/09/12 16:13:25 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../hdrs/minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+int	msh_dollarinterrogation(t_minishell *msh)
 {
-	char	*join;
-	int		len;
-	int		i;
-
-	if (!s1 || !s2)
-		return (NULL);
-	i = 0;
-	len = ft_strlen(s1) + ft_strlen(s2);
-	join = malloc(sizeof(char) * (len + 1));
-	if (!join)
-		return (NULL);
-	while (*s1)
-	{
-		join[i] = *s1;
-		s1++;
-		i++;
-	}
-	while (*s2)
-	{
-		join[i] = *s2;
-		s2++;
-		i++;
-	}
-	join[i] = '\0';
-	return (join);
+	(void)msh;
+	printf("minishell: %d: command not found.\n", g_exit);
+	return (0);
 }
+

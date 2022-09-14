@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 12:52:35 by aucousin          #+#    #+#             */
-/*   Updated: 2022/07/25 10:55:25 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/13 16:03:03 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	echo_checkarg(char *str)
 				return (0);
 			i++;
 		}
+		printf("-n detected\n");
 		return (1);
 	}
 	return (0);
@@ -40,8 +41,10 @@ int	msh_echo(t_process *proc, t_minishell *msh)
 	i = 1;
 	checkarg = 0;
 	while (proc->cmd[i] && echo_checkarg(proc->cmd[i]))
+	{
 		i++;
-	checkarg++;
+		checkarg++;
+	}
 	while (proc->cmd[i])
 	{
 		write(1, proc->cmd[i], ft_strlen(proc->cmd[i]));
@@ -49,7 +52,9 @@ int	msh_echo(t_process *proc, t_minishell *msh)
 			write(1, " ", 1);
 		i++;
 	}
-	if (checkarg)
+	if (!checkarg)
+	{
 		write(1, "\n", 1);
+	}
 	return (1);
 }

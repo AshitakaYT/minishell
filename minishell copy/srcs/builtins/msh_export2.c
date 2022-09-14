@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 18:29:28 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/04 18:31:11 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 18:53:32 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,12 @@ void	msh_export_args(t_process *proc, t_minishell *msh)
 {
 	int	i;
 
-	i = 0;
+	i = 1;
 	while (proc->cmd[i])
 	{
 		if (msh_isintab(msh->envp, proc->cmd[i]) == -1)
 		{
+			printf("cmd[i] == %s\n, i == %d\n", proc->cmd[i], i);
 			msh_realloc_env(msh, proc->cmd[i]);
 		}
 		else if (msh_isintab(msh->envp, proc->cmd[i]))

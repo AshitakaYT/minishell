@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 00:15:11 by aucousin          #+#    #+#             */
-/*   Updated: 2022/07/21 16:15:53 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 16:20:15 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ void	ft_heredocs(t_process *process)
 		l = p->redirs;
 		while (l)
 		{
+			printf("type = %d\n", l->type);
 			if (l->type == DLRED)
 				ft_heredoc(l);
 			l = l->next;

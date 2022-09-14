@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/03 14:57:43 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/04 18:56:07 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 18:18:23 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*msh_searchenv(char **env, char *str)
 	return (NULL);
 }
 
-int	msh_cd_noargs(t_process *proc)
+int	msh_cd_args(t_process *proc)
 {
 	char	*tmp;
 	char	*tmp2;
@@ -44,12 +44,12 @@ int	msh_cd_noargs(t_process *proc)
 	return (1);
 }
 
-int	msh_cd_args(t_minishell *msh)
+int	msh_cd_noargs(t_minishell *msh)
 {
 	char	*tmp;
 	char	*tmp2;
 
-	tmp = msh_searchenv(msh->envp, "HOME");
+	tmp = msh_searchenv(msh->envp, "HOME=");
 	tmp2 = ft_substr(tmp, 5, ft_strlen(tmp) - 5);
 	printf("tmp2 = %s\n", tmp2);
 	if (!tmp || ft_strlen(tmp2) == 0)
@@ -64,7 +64,7 @@ int	msh_cd_args(t_minishell *msh)
 int	msh_cd(t_process *proc, t_minishell *msh)
 {
 	if (proc->cmd[1])
-		return (msh_cd_noargs(proc));
+		return (msh_cd_args(proc));
 	else
-		return (msh_cd_args(msh));
+		return (msh_cd_noargs(msh));
 }

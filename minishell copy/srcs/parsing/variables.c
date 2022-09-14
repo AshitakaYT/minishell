@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/19 14:35:51 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/04 18:54:42 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/12 19:00:09 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ void	ft_handlevar(t_token *lst, t_minishell *msh, t_var *var)
 	var->tmp = ft_substr(lst->str, var->j, var->i - var->j);
 	if (msh_isintab(msh->envp, var->tmp))
 		var->var = msh_getvar(msh_isintab(msh->envp, var->tmp), msh);
+	if (ft_strcmp(var->tmp, "?") == 0)
+		var->var = ft_itoa(g_exit);
 	free(var->tmp);
 	var->tmp = ft_strdup(var->cmd);
 	var->cmd = ft_strjoin(var->tmp, var->var);

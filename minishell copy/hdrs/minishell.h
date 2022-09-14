@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:37:47 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/07 17:53:32 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 18:31:07 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,15 @@
 
 # define READING 1
 # define FINISHED 0
+
+// VARIABLE GLOBALE
+
+# ifndef G_EXIT
+#  define G_EXIT
+
+unsigned char	g_exit;
+
+# endif
 
 // INCLUDES
 
@@ -115,14 +124,13 @@ char		*ft_read_line(int buff_size, int pos, int c);
 
 //parsing
 
-void		msh_get_tokens(t_minishell *msh, char *line);
+int			msh_get_tokens(t_minishell *msh, char *line);
 int			ft_checkred(t_token *list);
 void		msh_create_process(t_minishell *msh, t_token *lst);
 int			msh_parse_redir(t_minishell *msh);
 void		ft_heredocs(t_process *process);
 void		ft_heredoc(t_redir *heredoc);
 
-void		msh_get_tokens(t_minishell *msh, char *line);
 int			msh_count_cmd(t_token *lst);
 void		msh_create_process(t_minishell *msh, t_token *lst);
 int			msh_parse_redir(t_minishell *msh);
@@ -145,7 +153,10 @@ void		ft_handlevar(t_token *lst, t_minishell *msh, t_var *var);
 char		*ft_handletxt(t_token *lst, t_minishell *msh);
 char		*ft_handlesq(t_token *lst);
 
+int			ft_isred2(int c);
 // builtins
+
+int			msh_dollarinterrogation(t_minishell *msh);
 
 int			msh_echo(t_process *proc, t_minishell *msh);
 
@@ -190,6 +201,8 @@ void		ft_printprocess(t_process *list);
 void		ft_print_tab(char **tab);
 
 // utils
+
+void	msh_destroy(t_minishell *msh);
 
 char		*ft_strndup(char const *src, int n);
 int			ft_len_alnum(char *str);

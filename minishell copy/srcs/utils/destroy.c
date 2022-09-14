@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   destroy.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/11 09:16:59 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/14 19:03:48 by aucousin         ###   ########lyon.fr   */
+/*   Created: 2022/09/09 11:02:25 by aucousin          #+#    #+#             */
+/*   Updated: 2022/09/12 15:36:39 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../../hdrs/minishell.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+void	msh_destroy(t_minishell *msh)
 {
-	char	*join;
-	int		len;
-	int		i;
-
-	if (!s1 || !s2)
-		return (NULL);
-	i = 0;
-	len = ft_strlen(s1) + ft_strlen(s2);
-	join = malloc(sizeof(char) * (len + 1));
-	if (!join)
-		return (NULL);
-	while (*s1)
-	{
-		join[i] = *s1;
-		s1++;
-		i++;
-	}
-	while (*s2)
-	{
-		join[i] = *s2;
-		s2++;
-		i++;
-	}
-	join[i] = '\0';
-	return (join);
+	if (msh->tokens)
+		ft_tokensclear(&msh->tokens);
+	if (msh->process)
+		ft_processclear(&msh->process);
+	if (msh->tokenstab)
+		ft_free_tab(msh->tokenstab);
+	if (msh->args)
+		ft_free_tab(msh->args);
+	if (msh->envp)
+		ft_free_tab(msh->envp);
+	if (msh->paths)
+		ft_free_tab(msh->paths);
+	if (msh->line)
+		free(msh->line);
 }

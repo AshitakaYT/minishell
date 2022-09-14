@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/02 06:57:40 by aucousin          #+#    #+#             */
-/*   Updated: 2022/06/07 15:43:28 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 16:53:27 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,13 @@ int	ft_isprintsh(int c)
 int	ft_isred(int c)
 {
 	if (c == RRED || c == LRED || c == DRRED || c == DLRED)
+		return (1);
+	return (0);
+}
+
+int	ft_isred2(int c)
+{
+	if (c == '<' || c == '>')
 		return (1);
 	return (0);
 }

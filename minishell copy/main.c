@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 10:51:22 by aucousin          #+#    #+#             */
-/*   Updated: 2022/08/17 15:52:13 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 18:56:34 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,34 @@ void	msh_loop(char **envp)
 //	signal(SIGQUIT, action);
 	while (msh.status != FINISHED)
 	{
-		write(1, "minish >  ", 9);
+		// write(1, "minish >  ", 9);
 		tmp = NULL;
-		msh.line = readline(tmp);
+		msh.line = readline("minish > ");
 		free(tmp);
+		printf("INVALID LINE !!!!!\n");
 		add_history(msh.line);
-		msh_get_tokens(&msh, msh.line);
-		ft_printtoken(msh.tokens);
-		if (!ft_checkred(msh.tokens))
+		printf("INVALID LINE !!!!!\n");
+		if (msh_get_tokens(&msh, msh.line) == -1)
 		{
-			printf("INVALID LINE !!!!!\n");
-			ft_tokensclear(&msh.tokens);
-			return ;
 		}
-		// printf("line = %s\n", msh.line);
-		msh_create_process(&msh, msh.tokens);
-		ft_tokensclear(&msh.tokens);
-		ft_heredocs(msh.process);
-		msh_parse_redir(&msh);
-		// printf("on va la ? \n");
-		// ft_printprocess(msh.process);
-		msh_execute(&msh);
-		ft_processclear(&msh.process);
+		else
+		{
+			ft_printtoken(msh.tokens);
+			if (!ft_checkred(msh.tokens))
+			{
+				ft_tokensclear(&msh.tokens);
+				return ;
+			}
+			// printf("line = %s\n", msh.line);
+			msh_create_process(&msh, msh.tokens);
+			ft_tokensclear(&msh.tokens);
+			ft_heredocs(msh.process);
+			msh_parse_redir(&msh);
+			// printf("on va la ? \n");
+			// ft_printprocess(msh.process);
+			msh_execute(&msh);
+			ft_processclear(&msh.process);
+		}
 	}
 }
 

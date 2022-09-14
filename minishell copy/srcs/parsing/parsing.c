@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 09:20:25 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/09 08:06:28 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 18:48:39 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,10 @@ t_token	*msh_parse_sq(char *line, int *linked, int *i)
 	t_token	*token;
 
 	if (ft_lenquote(&line[(*i)]) == -1)
-		ft_exit_fd(1, "unvalid single quote.");
+	{
+		dprintf(1, "unvalid single quote.\n");
+		return (NULL);
+	}
 	token = ft_tokennew(ft_strndup(&line[(*i)],
 				ft_lenquote(&line[(*i)])), SQTEXT, (*linked));
 	(*i) += ft_lenquote(&line[(*i)]);
@@ -73,6 +76,11 @@ t_token	*msh_parse_dbq(char *line, int *linked, int *i)
 {
 	t_token	*token;
 
+	if (ft_lendbquote(&line[(*i)]) == -1)
+	{
+		dprintf(1, "unvalid double quote.\n");
+		return (NULL);
+	}
 	token = ft_tokennew(ft_strndup(&line[(*i)],
 				ft_lendbquote(&line[(*i)])), DQTEXT, (*linked));
 	(*i) += ft_lendbquote(&line[(*i)]);
@@ -107,7 +115,10 @@ t_token	*msh_parse_red(char *line, int *linked, int *i)
 	}
 	else if (line[(*i)] && (line[(*i)]) == '<'
 		&& ((line[(*i) + 1] && line[(*i) + 1] != '<') || !line[(*i) + 1]))
-		token = ft_tokennew(ft_strndup(&line[(*i)++], 1), LRED, (*linked));
+	{
+		dprintf(2, "C LA MEW BLEUE ??\n");
+		token = ft_tokennew(ft_strndup(&line[(*i++)], 1), LRED, (*linked));
+	}
 	else
 		token = NULL;
 	(*linked) = 0;

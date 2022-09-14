@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/23 16:16:07 by aucousin          #+#    #+#             */
-/*   Updated: 2022/08/17 15:52:13 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/12 16:12:41 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	msh_isbuiltin(char *cmd)
 	if (ft_strcmp(cmd, "cd") == 0 || ft_strcmp(cmd, "echo") == 0 \
 		|| ft_strcmp(cmd, "env") == 0 || ft_strcmp(cmd, "exit") == 0 \
 		|| ft_strcmp(cmd, "pwd") == 0 || ft_strcmp(cmd, "export") == 0 \
-		|| ft_strcmp(cmd, "unset") == 0)
+		|| ft_strcmp(cmd, "unset") == 0 || ft_strcmp(cmd, "$?") == 0)
 		return (1);
 	printf("get rekt kiddo\n");
 	return (0);
@@ -39,4 +39,6 @@ void	msh_execbuiltin(t_process *proc, t_minishell *msh)
 		msh_export(proc, msh);
 	else if (ft_strcmp(proc->cmd[0], "unset") == 0)
 		msh_unset(proc, msh);
+	else if (ft_strcmp(proc->cmd[0], "$?") == 0)
+		msh_dollarinterrogation(msh);
 }

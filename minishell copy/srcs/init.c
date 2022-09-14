@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 08:04:34 by aucousin          #+#    #+#             */
-/*   Updated: 2022/08/17 15:32:35 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/12 15:40:44 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	msh_init(t_minishell *msh, char **envp)
 	msh->args = NULL;
 	msh->envp = ft_tabdup(envp);
 	msh->line = NULL;
+	g_exit = 0;
 	tmp = ft_tabjoin(ft_tablen(envp), envp, "\n");
 	if (!tmp)
 		return ;

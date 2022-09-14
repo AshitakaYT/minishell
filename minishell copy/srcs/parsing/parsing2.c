@@ -6,13 +6,13 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/07 17:04:59 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/09 07:53:22 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 18:47:57 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../hdrs/minishell.h"
 
-void	msh_get_tokens(t_minishell *msh, char *line)
+int	msh_get_tokens(t_minishell *msh, char *line)
 {
 	int		i;
 	int		linked;
@@ -22,21 +22,37 @@ void	msh_get_tokens(t_minishell *msh, char *line)
 	linked = 0;
 	while (line[i] && line[i] != '\n')
 	{
+		printf("line[i] == %c\n i == %d\n", line[i], i);
 		while (line[i] && line[i] == ' ')
 			i++;
-		if (line[i] && ft_isprintsh(line[i]))
+		if (!line[i])
+			return (0);
+		if (line[i] && ft_isprintsh(line[i]) && !ft_isred(line[i]))
+		{
 			token = msh_parse_txt(line, &linked, &i);
+		}
 		else if (line[i] && (line[i]) == 39)
+		{
 			token = msh_parse_sq(line, &linked, &i);
+		}
 		else if (line[i] && (line[i]) == '"')
+		{
 			token = msh_parse_dbq(line, &linked, &i);
-		else if (ft_isred(line[i]))
+		}
+		else if (line[i] && ft_isred2(line[i]))
+		{
 			token = msh_parse_red(line, &linked, &i);
+		}
 		else if (line[i] && (line[i]) == '|')
+		{
 			token = ft_tokennew(ft_strndup(&line[i++], 1), PIPE, linked);
+		}
+		if (!token)
+			return (-1);
 		ft_tokenadd_back(&msh->tokens, token);
 		token = NULL;
 	}
+	return (0);
 }
 
 int	msh_count_cmd(t_token *lst)

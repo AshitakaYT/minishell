@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 02:20:45 by aucousin          #+#    #+#             */
-/*   Updated: 2022/08/17 15:52:13 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/13 15:46:40 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	msh_execute_process(t_minishell *msh, t_process *proc)
 	else
 	{
 		printf("Builtout detected, opinion rejected.\n");
+		if (access(proc->cmd[0], F_OK) == 0)
+			execve(proc->cmd[0], proc->cmd, msh->envp);
 		while (msh->paths[i])
 		{
 			cmd = ft_strjoin(msh->paths[i], proc->cmd[0]);
