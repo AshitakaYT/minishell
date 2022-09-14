@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 08:04:34 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/12 15:40:44 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 20:05:41 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,36 @@ char	**ft_tabdup(char **tab)
 	return (new);
 }
 
+
+void	msh_update_shlvl(t_minishell *msh)
+{
+	int	i;
+	int	j;
+	int	nb;
+	char *tmp;
+	char *tmp2;
+
+	i = msh_isintab(msh->envp, "SHLVL");
+	j = 0;
+	if (i != -1)
+	{
+		while (msh->envp[i][j] && msh->envp[i][j] != '=')
+			j++;
+		j++;
+		if (msh->envp[i][j])
+		{
+			nb = ft_atoi(&msh->envp[i][j]);
+			tmp = ft_itoa(nb + 1);
+			if (!tmp)
+				return ;
+			tmp2 = ft_substr(msh->envp[i], 0, j);
+			free(msh->envp[i]);
+			msh->envp[i] = ft_strjoin(tmp2, tmp);
+		}
+
+	}
+}
+
 void	msh_init(t_minishell *msh, char **envp)
 {
 	char	*path;
@@ -75,4 +105,5 @@ void	msh_init(t_minishell *msh, char **envp)
 	msh->paths = ft_split(path, ':');
 	free(path);
 	ft_add_slash(msh);
+	msh_update_shlvl(msh);
 }

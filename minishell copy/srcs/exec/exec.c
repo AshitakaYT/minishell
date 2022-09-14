@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 02:20:45 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/13 15:46:40 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/14 19:50:38 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,21 +149,29 @@ int	msh_execute(t_minishell *msh)
 	int			status;
 
 	l = msh->process;
-	while (l)
+	if (!l->next && msh_isbuiltin(l->cmd[0]))
 	{
-		pipe(l->end);
-		l->child = fork();
-		if (!l->child)
-			msh_child_process(msh, l);
-		l = l->next;
+		msh_execbuiltin(l, msh);
+		return (1);
 	}
-	l = msh->process;
-	while (l)
+	else
 	{
-		close(l->end[0]);
-		close(l->end[1]);
-		waitpid(l->child, &status, 0);
-		l = l->next;
+		while (l)
+		{
+			pipe(l->end);
+			l->child = fork();
+			if (!l->child)
+				msh_child_process(msh, l);
+			l = l->next;
+		}
+		l = msh->process;
+		while (l)
+		{
+			close(l->end[0]);
+			close(l->end[1]);
+			waitpid(l->child, &status, 0);
+			l = l->next;
+		}
+		return (1);
 	}
-	return (1);
 }
