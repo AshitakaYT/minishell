@@ -6,7 +6,7 @@
 /*   By: aucousin <aucousin@student.42lyon.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/09 02:20:45 by aucousin          #+#    #+#             */
-/*   Updated: 2022/09/14 19:50:38 by aucousin         ###   ########lyon.fr   */
+/*   Updated: 2022/09/15 15:05:09 by aucousin         ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,12 +142,28 @@ void	msh_child_process(t_minishell *msh, t_process *proc)
 		close(proc->file_out);
 }
 
+int	ft_child_status(int child_status)
+{
+	int	return_val;
+
+	if (WIFEXITED(child_status) != 0)
+		return_val = WEXITSTATUS(child_status);
+	else
+	{
+		if (WIFSIGNALED(child_status) != 0)
+			return_val = WTERMSIG(child_status) + 128;
+		else
+			return (0);
+	}
+	return (return_val);
+}
+
 int	msh_execute(t_minishell *msh)
 {
 	t_process	*l;
 //	t_process	*tmp;
 	int			status;
-
+	printf("g_exitinit = %d\n", g_exit);
 	l = msh->process;
 	if (!l->next && msh_isbuiltin(l->cmd[0]))
 	{
@@ -170,6 +186,8 @@ int	msh_execute(t_minishell *msh)
 			close(l->end[0]);
 			close(l->end[1]);
 			waitpid(l->child, &status, 0);
+			g_exit = ft_child_status(status);
+			printf("g_exit = %d\n", g_exit);
 			l = l->next;
 		}
 		return (1);
