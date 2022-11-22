@@ -1,0 +1,41 @@
+env | grep "_="
+~
+/Users
+.
+/
+exit cd ..
+exit something somethingv2
+exit echo something
+env | grep "_="
+export --TEST=123
+export TE\ST=100
+export -TEST=100
+export -TEST=123
+export TEST+=100
+echo "-n -n -n"-n bonjour
+echo ~
+echo ~/123
+echo ~/123/456
+echo ''''''''''$USER''''''''''
+echo """"""""$USER""""""""
+echo \" \" \" \"\"\" \'\'\'
+echo "$USER""Users/$USER/file""'$USER'"'$USER'
+echo " $USER $ "'$PWD'
+echo $USER=4
+echo $USER=thallard
+echo $USER$12USER$USER=4$USER12
+echo $USER $123456789USER $USER123456789
+echo $USER $9999USER $8888USER $7777USER
+echo $USER $USER9999 $USER8888 $USER7777
+echo $USER $USER9999 $USER8888 $USER7777 "$USER"
+echo "$USER=12$USER"
+echo "$9USER" "'$USER=12$SOMETHING'"
+echo $PWD/file
+echo "$PWD/file"
+unset TES;T
+unset -TEST
+unset _TEST
+unset TES_T
+unset TEST_
+unset ________
+cd $OLDPWD/something
